@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC 
+		"-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+		"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<!-- 管理后台 -->
+	
+	<definition name="footer" template="/WEB-INF/views/admin/layout/footer.jsp" preparer="com.huayu.a.web.tools.FooterViewPreparer" />
+	<definition name="sidebar" template="/WEB-INF/views/admin/layout/sidebar.jsp" preparer="com.huayu.a.web.tools.SidebarViewPreparer" />
+	<definition name="header" template="/WEB-INF/views/admin/layout/header.jsp" preparer="com.huayu.a.web.tools.HeaderViewPreparer" />
+	
+	<definition name=".adminLayout" template="/WEB-INF/views/admin/layout/layout.jsp">
+		<put-attribute name="header" value="header" />
+		<put-attribute name="sidebar" value="sidebar" />
+		<put-attribute name="footer" value="/WEB-INF/views/admin/layout/footer.jsp" />
+	</definition>
+
+	<definition name=".admin.*.*" extends=".adminLayout">
+		<put-attribute name="content" value="/WEB-INF/views/admin/{1}/{2}.jsp" />
+	</definition>
+
+	<definition name=".hr.*.detail.*" extends=".adminLayout">
+		<put-attribute name="content" value="/WEB-INF/views/hr/{1}/detail/{2}.jsp" />
+	</definition>
+
+	<definition name=".hr.*.*" extends=".adminLayout">
+		<put-attribute name="content" value="/WEB-INF/views/hr/{1}/{2}.jsp" />
+	</definition>
+
+    <definition name=".p.*.*" extends=".adminLayout">
+        <put-attribute name="content" value="/WEB-INF/views/p/{1}/{2}.jsp" />
+    </definition>
+
+	<definition name=".*.*.*" extends=".adminLayout">
+		<put-attribute name="content" value="/WEB-INF/views/{1}/{2}/{3}.jsp" />
+	</definition>
+
+
+</tiles-definitions>
