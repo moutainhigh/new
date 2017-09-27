@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+		http://www.springframework.org/schema/security 
+		http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+	<http pattern="/resources/**" security="none" />
+	<http pattern="/recruitment/**" security="none" />
+	<http pattern="/position/**" security="none" />
+	<http pattern="/seeyon/**" security="none" />
+
+	<http auto-config="true" use-expressions="true" disable-url-rewriting="true">
+
+		<form-login login-page="/admin/login/input" login-processing-url="/j_spring_security_check" authentication-failure-url="/admin/login/failed"  default-target-url="/admin/login/success"/>
+
+		<access-denied-handler error-page="/admin/index/accessDenied" />
+
+		<!-- 检测失效的sessionId,超时时定位到另外一个URL -->
+		<session-management invalid-session-url="/admin/login/failed" />
+
+		 <!--<intercept-url pattern="/admin/**" access="isAuthenticated" />-->
+		
+		<logout invalidate-session="true" success-handler-ref="logoutSuccessHandler" logout-url="/j_spring_security_logout" />
+				
+		<session-management session-authentication-strategy-ref="concurrentSessionControlStrategy" />
+
+		<custom-filter before="FORM_LOGIN_FILTER" ref="usernamePasswordAuthenticationExtendFilter" />
+		<custom-filter before="FILTER_SECURITY_INTERCEPTOR" ref="filterSecurityInterceptor" />
+
+		
+	</http>
+
+	<global-method-security pre-post-annotations="enabled"/>
+
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider ref="securityAuthenticationProvider"/>
+		<!--<authentication-provider user-service-ref="userDetailsImpService">-->
+			<!--<password-encoder hash="md5">-->
+				<!-- 将每个用户的username作为盐值 -->
+				<!--<salt-source user-property="userId" />-->
+			<!--</password-encoder>-->
+		<!--</authentication-provider>-->
+	</authentication-manager>
+
+	<!-- 验证码 -->
+	<beans:bean id="usernamePasswordAuthenticationExtendFilter" class="com.huayu.a.service.tools.UsernamePasswordAuthenticationExtendFilter">
+		<beans:property name="postOnly" value="true"/>
+		<beans:property name="openValidateCode" value="false"/>
+		<beans:property name="authenticationSuccessHandler" ref="loginLogAuthenticationSuccessHandler"/>
+		<beans:property name="authenticationFailureHandler" ref="simpleUrlAuthenticationFailureHandler"/>
+		<beans:property name="authenticationManager" ref="authenticationManager"/>
+	</beans:bean>
+	
+	<!-- 资源  -->
+	<beans:bean id="filterSecurityInterceptor" class="org.springframework.security.web.access.intercept.FilterSecurityInterceptor">  
+	    <beans:property name="accessDecisionManager" ref="accessDecisionManager" />  
+	    <beans:property name="authenticationManager" ref="authenticationManager" />  
+	    <beans:property name="securityMetadataSource" ref="securityMetadataSource" />  
+	</beans:bean>  
+	
+  
+  	<!-- 元数据提供接口 -->
+	<beans:bean id="securityMetadataSource"  
+    	class="com.huayu.a.service.tools.URLFilterInvocationSecurityMetadataSource"/>
+    
+    	
+    <!-- 权限抉择接口 -->
+    <beans:bean id="accessDecisionManager" class="com.huayu.a.service.tools.DefaultAccessDecisionManager"/>
+
+
+
+	<!-- 登录成功 -->
+	<beans:bean id="loginLogAuthenticationSuccessHandler" class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler"> 
+		<beans:property name="defaultTargetUrl" value="/admin/login/success"/>
+	</beans:bean> 
+
+	<!-- 登录失败 -->
+	<beans:bean id="simpleUrlAuthenticationFailureHandler" class="org.springframework.security.web.authentication.SimpleUrlAuthenticationFailureHandler"> 
+		<beans:property name="defaultFailureUrl" value="/admin/login/failed"/>
+	</beans:bean>
+	
+	<!-- Session过期 -->
+	<beans:bean id="concurrentSessionControlStrategy"  
+	    class="org.springframework.security.web.authentication.session.ConcurrentSessionControlStrategy">  
+	    <beans:constructor-arg name="sessionRegistry" ref="sessionRegistry" />  
+	    <beans:property name="maximumSessions" value="1"></beans:property>  
+	</beans:bean>  
+  
+	<beans:bean id="sessionRegistry" class="org.springframework.security.core.session.SessionRegistryImpl" /> 
+
+</beans:beans>

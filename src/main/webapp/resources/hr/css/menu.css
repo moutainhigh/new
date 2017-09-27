@@ -1,0 +1,57 @@
+@font-face {font-family: "iconfont";
+    src: url('../front/fonts/iconfont/iconfont.eot?t=1461305960'); /* IE9*/
+    src: url('../front/fonts/iconfont/iconfont.eot?t=1461305960#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../front/fonts/iconfont/iconfont.woff?t=1461305960') format('woff'), /* chrome, firefox */
+    url('../front/fonts/iconfont/iconfont.ttf?t=1461305960') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('../front/fonts/iconfont/iconfont.svg?t=1461305960#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+a,a:hover{
+    text-decoration: none !important;
+    -moz-transition:all 0.3s ease;
+    -o-transition:all 0.3s ease;
+    -webkit-transition:all 0.3s ease;
+    transition:all 0.3s ease;
+}
+li{list-style: none}
+.menu-nav h4{
+    padding:0 5px;
+    font-size: 16px;
+}
+.menu-nav ul{
+    padding:0;
+    overflow: hidden;
+}
+.menu-nav li{
+    float: left;
+    padding: 0 5px;
+    margin-bottom: 10px;
+    width:20%;
+}
+.menu-nav li > a{
+    display: block;
+    height:75px;
+    line-height: 75px;
+    text-align: center;
+    font-size: 16px;
+    color: #333;
+    background-color: #fff;
+    border-radius: 4px !important;
+}
+.menu-nav li > a i{
+    font-size: 36px;
+    color: #333;
+    vertical-align: middle;
+}
+.menu-nav li > a:hover{
+    color: #fff;
+    background-color: #17c4bb;
+}
+.menu-nav li > a:hover i{
+    color: #fff;
+}
+@media(max-width: 768px) {
+    .menu-nav li{
+        width:50%;
+    }
+}

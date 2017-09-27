@@ -1,0 +1,53 @@
+.mar_t10{
+    margin-top: 10px;
+}
+.mar_t20{
+    margin-top: 20px;
+}
+.form-inline *{
+    margin-top: 3px;
+}
+.table-width{
+    min-width: 1600px;
+}
+.table .lv2 td , .table .lv3 td{
+    font-size: 12px;
+}
+.table .lv2{
+    background-color: #f9f9f9;
+}
+.table-none{
+    border:none;
+}
+/*
+.table-as-wide thead > tr > th{
+    width: 4.34%;
+}
+*/
+.table434 thead > tr > th{
+    width: 4.34%;
+    font-weight: 600;
+}
+.table5 thead > tr > th{
+    width: 5%;
+    font-weight: 600;
+}
+.percent3{
+    width:3% !important;
+}
+.percent6{
+    width:6% !important;
+}
+.percent7{
+    width:7% !important;
+}
+.table-center thead > tr > th ,
+.table-center tbody > tr > td{
+    text-align: center;
+}
+/**
+ * my97日期插件弹窗
+ */
+iframe[src="about:blank"] {
+    display: block;
+}

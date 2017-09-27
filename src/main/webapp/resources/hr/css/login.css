@@ -1,0 +1,48 @@
+.login{
+    background-color: #fdffff !important;
+}
+.login-head{
+    padding: 80px 0 50px;
+    text-align: center;
+    background-color: #364150;
+    color: #fdffff;
+}
+.login-head h1{
+    font-weight: normal;
+}
+.login .content{
+    position: relative;
+    width: 400px;
+    margin: 40px auto 10px;
+    padding:0;
+    background-color:transparent;
+    overflow: hidden;
+}
+.login .content .form-control{
+    background-color:#fdffff;
+    border: 1px solid #e5e5e5;
+    height: 42px;
+    color: #999;
+    border-radius: 4px !important;
+}
+.input-group .form-control{
+    width:98%;
+}
+.login .content .form-actions{
+    border-bottom: 0px;
+}
+.login .content .form-actions .btn{
+    width:100%;
+    padding: 10px 0;
+    border-radius: 4px;
+}
+.login .copyright{
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    width:100%;
+    text-align: center;
+    line-height: 60px;
+    background-color: #f1f1f1;
+}
