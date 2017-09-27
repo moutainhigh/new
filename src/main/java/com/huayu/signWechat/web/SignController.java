@@ -1196,11 +1196,14 @@ public class SignController {
         return ".sign.check.workSign";
     }
 
+<<<<<<< HEAD
     @RequestMapping("/toLeavePageOa")
     public String toLeavePageOa(Model model) {
         model.addAttribute("startTime",DateTimeUtil.convertStringToDate(DateTimeUtil.dateToString(DateTimeUtil.getFirstDateOfMonth(new Date()),DateTimeUtil.YYYY_MM_DD)+" 00:00:00",DateTimeUtil.YYYY_MM_DD_HH_MM_SS));
         model.addAttribute("endTime",DateTimeUtil.convertStringToDate( DateTimeUtil.dateTimePlusNum(DateTimeUtil.YYYY_MM_DD, DateTimeUtil.dateToString(new Date()), DateTimeUtil.PLUSTYPE_DAY, -1)+" 23:59:59", DateTimeUtil.YYYY_MM_DD_HH_MM_SS));
         return ".sign.check.leavePageOa";
     }
+=======
+>>>>>>> 19c30c550e1ad9e34be72607eb74c5930a12d79f
 
 }
